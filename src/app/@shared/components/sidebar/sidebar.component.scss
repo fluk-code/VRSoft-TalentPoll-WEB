@@ -1,0 +1,31 @@
+.active-item {
+  ::ng-deep i {
+    filter: var(--main-sidebar-orange-filter) !important;
+    -webkit-filter: var(--main-sidebar-orange-filter) !important;
+  }
+
+  span {
+    color: var(--color-theme) !important;
+  }
+}
+
+.active-div {
+  > a {
+    filter: var(--main-sidebar-white-filter) !important;
+  }
+  background-color: var(--color-primary-400) !important;
+}
+
+.main-sidebar__submenu--container {
+  ::ng-deep .fk-rede {
+    width: 2.5rem;
+    height: 2.125rem;
+    background-size: 2.5rem 2.125rem;
+  }
+
+  ::ng-deep .fk-contabilidade {
+    width: 2.5rem;
+    height: 2.125rem;
+    background-size: 2.5rem 2.125rem;
+  }
+}

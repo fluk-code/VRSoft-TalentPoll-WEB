@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  gui:
+    build: .
+    container_name: NOME_DO_PROJETO_GUI
+    entrypoint: ./.docker/entrypoint.sh
+    volumes:
+      - .:/home/node/app
+    ports:
+      - '9876:9876'
+      - '${PORT}:${PORT}'
