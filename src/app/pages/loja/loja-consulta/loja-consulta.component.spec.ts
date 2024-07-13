@@ -166,6 +166,31 @@ describe('LojaConsultaComponent', () => {
     expect(lojaHttpServiceMock.search).not.toHaveBeenCalled();
   });
 
+  it('Deve order quando coluna for clicada', () => {
+    lojaHttpServiceMock.search.calls.reset();
+    const colunaElement: HTMLElement = fixture.nativeElement.querySelector('th.codigo');
+    colunaElement.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+
+    expect(lojaHttpServiceMock.search).toHaveBeenCalledWith({
+      page: 1,
+      perPage: 5,
+      lastPage: undefined,
+      total: undefined,
+      sort: { id: 'ASC' },
+    } as any);
+
+    colunaElement.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(lojaHttpServiceMock.search).toHaveBeenCalledWith({
+      page: 1,
+      perPage: 5,
+      lastPage: undefined,
+      total: undefined,
+      sort: { id: 'DESC' },
+    } as any);
+  });
+
   it('Deve realizar o unsubscribe quando component for destruido', () => {
     const unsubscribeSpy = spyOn(component['subs'], 'unsubscribe');
     component.ngOnDestroy();

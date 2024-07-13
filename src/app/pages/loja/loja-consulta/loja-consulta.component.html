@@ -21,8 +21,8 @@
     <div class="table--container">
       <table>
         <thead>
-          <th class="codigo">Código</th>
-          <th class="descricao">Descricao</th>
+          <th class="codigo" (click)="ordenar('id')">Código</th>
+          <th class="descricao" (click)="ordenar('descricao')">Descricao</th>
           <th class="acoes"></th>
         </thead>
         <tbody>

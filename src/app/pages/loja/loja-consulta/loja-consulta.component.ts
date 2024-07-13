@@ -68,6 +68,24 @@ export class LojaConsultaComponent implements OnInit, OnDestroy {
     this.searchLoja(this.paginate);
   }
 
+  ordenar(field: keyof IPaginate<ILojaSort>['sort']) {
+    let direction = 'ASC';
+
+    if (this.paginate.sort[field] === 'ASC') {
+      direction = 'DESC';
+    }
+
+    this.paginate = {
+      ...this.paginate,
+      page: 1,
+      sort: {
+        [field]: direction,
+      },
+    };
+
+    this.subs.add(this.searchLoja$(this.paginate).subscribe());
+  }
+
   navigatePage(page: number | string) {
     if (typeof page !== 'number') {
       return;

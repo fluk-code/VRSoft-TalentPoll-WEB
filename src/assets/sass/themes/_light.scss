@@ -15,17 +15,12 @@
   --color-secondary: #e8eaed;
   --color-background: var(--color-gray-5);
 
-  // Success
-  --color-primary-1: #e3fffc;
-  --color-primary-2: #b0fff7;
-  --color-primary-3: #6ad9ce;
-  --color-primary-4: #0a7368;
-  --color-primary-5: #12403b;
+  --color-primary: #e87313;
 
-  // Error
-  --color-contrast-1: #e8ccde;
-  --color-contrast-2: #ab7b9a;
-  --color-contrast-3: #bf1784;
-  --color-contrast-4: #8c2d6b;
-  --color-contrast-5: #592e4a;
+  --color-contrast: #b313e8;
+  --color-complement: #3c49d8;
+
+  --color-warning: #e8c100;
+  --color-success: #00b25c;
+  --color-danger: #b20000;
 }
