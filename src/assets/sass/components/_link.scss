@@ -1,0 +1,10 @@
+a {
+  color: var(--color-default);
+  text-decoration: none;
+  word-wrap: break-word;
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+  }
+}
