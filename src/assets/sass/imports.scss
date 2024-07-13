@@ -1,10 +1,20 @@
 @charset 'UTF-8';
 
+// Abstracts
+@import 'abstracts/variables';
+@import 'abstracts/reset';
+
 // 1. Themes
+@import 'themes/light';
+@import 'themes/dark';
 
 // 2. Mixiins
 
 // 4. Components
+@import 'components/form';
+@import 'components/table';
+@import 'components/input';
+@import 'components/button';
 
 // 5. Icons
 @import 'icons/icons.scss';

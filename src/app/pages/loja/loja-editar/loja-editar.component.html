@@ -1,0 +1,21 @@
+<fk-sidebar>
+  <fk-btn-back routerLink=".."></fk-btn-back>
+  <fk-btn-add [routerLink]="['..', 'cadastrar']"></fk-btn-add>
+  <fk-btn-save (click)="onSave()" [disabled]="!form.valid"></fk-btn-save>
+</fk-sidebar>
+
+<div class="page">
+  <form [formGroup]="form">
+    <div class="form__row">
+      <div class="input--container codigo">
+        <label for="codigo">Código</label>
+        <input id="codigo" type="numeric" formControlName="id" />
+      </div>
+
+      <div class="input--container form__row--flex-grow">
+        <label for="descricao">Descrição</label>
+        <input id="descricao" type="text" formControlName="descricao" />
+      </div>
+    </div>
+  </form>
+</div>

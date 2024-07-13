@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PagesComponent } from './pages.component';
-import { PagesModule } from './pages.module';
+import { BtnSmallEditComponent } from './btn-small-edit.component';
 
-describe('PagesComponent', () => {
-  let component: PagesComponent;
-  let fixture: ComponentFixture<PagesComponent>;
+describe('BtnSmallEditComponent', () => {
+  let component: BtnSmallEditComponent;
+  let fixture: ComponentFixture<BtnSmallEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PagesModule],
+      imports: [BtnSmallEditComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PagesComponent);
+    fixture = TestBed.createComponent(BtnSmallEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

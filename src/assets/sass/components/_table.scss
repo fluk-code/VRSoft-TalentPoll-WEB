@@ -1,0 +1,58 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    th {
+      text-align: left;
+      background-color: var(--color-gray-4);
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: var(--color-gray-2);
+      }
+
+      td {
+        padding: 0.25rem 0.5rem;
+        &.table__not-found {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  tfoot {
+    tr {
+      background-color: var(--color-gray-2);
+      border-top: 2px solid var(--color-gray-0);
+
+      td {
+        padding: 0.25rem 0.5rem;
+
+        .table__footer {
+          display: flex;
+          align-items: center;
+
+          .table__footer__pages {
+            flex-grow: 1;
+            text-align: center;
+
+            & > * {
+              padding: 0 0.35rem;
+            }
+          }
+
+          .table__footer__pages--active {
+            color: var(--color-contrast-3);
+            font-weight: bold;
+            font-size: 1.25rem;
+          }
+        }
+      }
+    }
+  }
+}

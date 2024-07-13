@@ -1,4 +1,4 @@
-# NOME_DO_PROJETO_GUI
+# VRSoft-TalentPool-WEB
 
 ### ⚠️ Check List
 

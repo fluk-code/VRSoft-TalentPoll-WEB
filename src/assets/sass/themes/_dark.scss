@@ -1,0 +1,32 @@
+:root[theme='dark'] {
+  --color-white: #eceff1;
+
+  // Gray
+  --color-gray-0: #1c1c1c;
+  --color-gray-1: #4d4d4d;
+  --color-gray-2: #222222;
+  --color-gray-3: #666666;
+  --color-gray-4: #222222;
+  --color-gray-5: #737373;
+  --color-gray-6: #8c8c8c;
+  --color-gray-7: #e0e0e0;
+  --color-gray-8: #e5e5e5;
+  --color-gray-9: #f4f4f4;
+  --color-tertiary: #292929;
+  --color-secondary: #161616;
+  --color-background: var(--color-gray-1);
+
+  // Success
+  --color-primary-1: #e3fffc;
+  --color-primary-2: #b0fff7;
+  --color-primary-3: #6ad9ce;
+  --color-primary-4: #0a7368;
+  --color-primary-5: #12403b;
+
+  // Error
+  --color-contrast-1: #e8ccde;
+  --color-contrast-2: #ab7b9a;
+  --color-contrast-3: #bf1784;
+  --color-contrast-4: #8c2d6b;
+  --color-contrast-5: #592e4a;
+}

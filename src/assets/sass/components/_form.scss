@@ -1,0 +1,22 @@
+form {
+  padding: 1rem;
+
+  &.form--clean {
+    padding: 0;
+
+    & > * {
+      display: inline;
+    }
+  }
+
+  .form__row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .form__row--flex-grow {
+      flex-grow: 1;
+    }
+  }
+}

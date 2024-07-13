@@ -1,0 +1,23 @@
+button {
+  appearance: none;
+  background-color: transparent;
+
+  padding: 0.15rem 0.5rem;
+
+  border: 2px solid var(--color-primary-4);
+  color: var(--color-primary-4);
+  border-radius: 20px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
