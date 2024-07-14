@@ -1,41 +1,5 @@
 @import '../abstracts/variables';
 
-select {
-  appearance: none;
-  -webkit-appearance: button;
-  -webkit-border-radius: 4px;
-  -webkit-user-select: none;
-
-  font-weight: bold;
-
-  &.select--clean {
-    background: none;
-    border: 1px solid $background-color;
-    color: var(--color-gray-9);
-
-    &:focus {
-      border: 1px solid $background-color;
-    }
-
-    option {
-      appearance: none;
-      border: 0px;
-      outline: 0px;
-      background-color: $background-color;
-
-      &:checked {
-        font-weight: bold;
-        color: var(--color-gray-0);
-        background-color: var(--color-complement);
-      }
-
-      &:not(:checked) {
-        background-color: var(--color-gray-0);
-      }
-    }
-  }
-}
-
 input {
   &:disabled {
     background-color: var(--color-gray-2);
@@ -67,7 +31,7 @@ input {
     border: 0.063rem solid var(--color-gray-2);
     width: 100%;
     color: var(--color-gray-9);
-    border-radius: $global-radius;
+    border-radius: 4px;
     box-sizing: border-box;
     height: 2rem;
     letter-spacing: 0.009rem;

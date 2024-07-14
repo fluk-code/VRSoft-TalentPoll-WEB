@@ -1,0 +1,90 @@
+<fk-sidebar>
+  <fk-btn-back routerLink=".."></fk-btn-back>
+  <fk-btn-add [routerLink]="['..', 'cadastrar']"></fk-btn-add>
+  <fk-btn-save (click)="onSave()" [disabled]="!formProduto.valid"></fk-btn-save>
+</fk-sidebar>
+
+<div class="page">
+  <form [formGroup]="formProduto">
+    <div class="form__inputs">
+      <div class="form__row">
+        <div class="input--container codigo">
+          <label for="codigo">Código</label>
+          <input id="codigo" type="number" formControlName="id" />
+        </div>
+
+        <div class="input--container form__row--flex-grow">
+          <label for="descricao">Descrição</label>
+          <input id="descricao" type="text" formControlName="descricao" />
+        </div>
+
+        <div class="input--container custo">
+          <label for="custo">Custo</label>
+          <input id="custo" type="text" formControlName="custo" />
+        </div>
+      </div>
+
+      <div class="table--container">
+        <table>
+          <thead>
+            <th class="add">
+              <fk-btn-small-add (click)="showModalAddPreco()"></fk-btn-small-add>
+            </th>
+            <th class="loja">Loja</th>
+            <th class="preco-venda">Preço de venda</th>
+            <th class="acoes"></th>
+          </thead>
+          <tbody>
+            @if (precoList.length) {
+              @for (preco of precoList; track preco.idLoja) {
+                <tr>
+                  <td colspan="2">{{ preco.descricaoLoja }}</td>
+                  <td>{{ preco.precoVenda }}</td>
+                  <td>
+                    <fk-btn-small-edit
+                      (click)="showModalAlterarPreco(preco.idLoja, preco.precoVenda)"
+                    ></fk-btn-small-edit>
+                    <fk-btn-small-remove
+                      (click)="onRemovePreco(preco.idLoja)"
+                    ></fk-btn-small-remove>
+                  </td>
+                </tr>
+              }
+            } @else {
+              <tr>
+                <td colspan="3" class="table__not-found">Nenhum registro encontrado</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form__img"></div>
+  </form>
+</div>
+
+<ng-template #modal>
+  <form class="modal" [formGroup]="formAddPrecos">
+    <div class="modal__title">
+      <fk-btn-save (click)="onAddPreco()" [disabled]="!formAddPrecos.valid"></fk-btn-save>
+      <h4 class="title">Adicionar Preço</h4>
+      <fk-btn-small-close (click)="closeModal()"></fk-btn-small-close>
+    </div>
+
+    <div class="form__row">
+      <div class="select--container">
+        <label for="select-loja">Loja</label>
+        <select id="select-loja" formControlName="idLoja">
+          @for (loja of lojaList; track loja.id) {
+            <option [value]="loja.id">{{ loja.descricao }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="input--container preco-venda">
+        <label for="preco-venda">Preço de venda</label>
+        <input id="preco-venda" type="text" formControlName="precoVenda" />
+      </div>
+    </div>
+  </form>
+</ng-template>

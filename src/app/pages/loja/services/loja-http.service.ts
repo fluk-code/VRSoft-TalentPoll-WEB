@@ -51,6 +51,15 @@ export class LojaHttpService {
     return this.http.get<ILoja>(`${this.url}/${id}`).pipe(take(1));
   }
 
+  findAll(): Observable<ILoja[]> {
+    const params = new HttpParams().set('type', 'all');
+    return this.http
+      .get<ILoja[]>(`${this.url}`, {
+        params,
+      })
+      .pipe(take(1));
+  }
+
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/${id}`).pipe(take(1));
   }

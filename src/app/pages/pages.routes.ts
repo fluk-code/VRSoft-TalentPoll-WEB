@@ -38,6 +38,13 @@ export const routes: Routes = [
                 (c) => c.ProdutoConsultaComponent
               ),
           },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./produto/produto-editar/produto-editar.component').then(
+                (c) => c.ProdutoEditarComponent
+              ),
+          },
         ],
       },
       { path: '', redirectTo: 'lojas', pathMatch: 'full' },

@@ -1,0 +1,74 @@
+.select--container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.25rem;
+}
+
+.select--container label {
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid var(--color-gray-2); /* Use variáveis CSS */
+  border-radius: 4px;
+  color: var(--color-gray-9);
+  font-weight: bold;
+  background: none;
+  height: 2rem;
+  line-height: 2rem; /* Alinha o texto verticalmente */
+  min-width: 3rem;
+  padding: 0 1rem; /* Padding lateral */
+  display: flex;
+  align-items: center; /* Garante que o texto esteja alinhado verticalmente */
+}
+
+select option {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  zoom: 1.1;
+  background-color: var(--background-color); /* Use variáveis CSS */
+}
+
+select option:checked {
+  font-weight: bold;
+  color: var(--color-gray-0);
+  background-color: var(--color-complement);
+}
+
+select option:not(:checked) {
+  background-color: var(--color-gray-0);
+}
+
+select.select--clean {
+  background: none;
+  border: 1px solid var(--background-color); /* Use variáveis CSS */
+  color: var(--color-gray-9);
+  border-radius: 4px;
+  height: 2rem;
+  line-height: 2rem; /* Alinha o texto verticalmente */
+  padding: 0 1rem; /* Padding lateral */
+  display: inline;
+}
+
+select.select--clean option {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  zoom: 1.1;
+  background-color: var(--color-gray-0); /* Use variáveis CSS */
+}
+
+select.select--clean option:checked {
+  font-weight: bold;
+  color: var(--color-gray-0);
+  background-color: var(--color-complement);
+}
+
+select.select--clean option:not(:checked) {
+  background-color: var(--color-gray-0);
+}

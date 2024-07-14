@@ -1,0 +1,81 @@
+form {
+  display: flex;
+  gap: 1rem;
+
+  .form__inputs {
+    flex-grow: 1;
+
+    .input--container {
+      &.codigo {
+        width: 10rem;
+      }
+
+      &.custo {
+        width: 10rem;
+      }
+    }
+  }
+
+  .form__img {
+    width: 250px;
+    height: 250px;
+
+    border: 1px solid var(--color-gray-2);
+    border-radius: 4px;
+  }
+}
+
+.table--container {
+  padding-top: 1rem;
+
+  thead {
+    th {
+      &.add {
+        width: 1rem;
+      }
+
+      &.preco-venda {
+        width: 20rem;
+      }
+
+      &.custo {
+        width: 5rem;
+      }
+
+      &.acoes {
+        width: 5rem;
+      }
+    }
+  }
+}
+
+.modal {
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  .modal__title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0.5rem 0;
+
+    .title {
+      margin: 0;
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+
+  .form__row {
+    margin: 2rem 0 2rem 0;
+
+    .preco-venda {
+      width: 10rem;
+    }
+  }
+}

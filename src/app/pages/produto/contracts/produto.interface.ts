@@ -9,7 +9,8 @@ export interface IProduto {
 
 export interface IProdutoLoja {
   idLoja: number;
-  valorVenda: string;
+  descricaoLoja: string;
+  precoVenda: string;
 }
 
 export interface IProdutoFilter extends Partial<IProduto> {}

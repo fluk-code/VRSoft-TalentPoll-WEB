@@ -8,7 +8,12 @@ import {
   SearchRequest,
   SearchResponse,
 } from '../../../@shared/services/http/contracts/search.interface';
-import { IProduto, IProdutoFilter, IProdutoSort } from '../contracts/produto.interface';
+import {
+  IProduto,
+  IProdutoFilter,
+  IProdutoLoja,
+  IProdutoSort,
+} from '../contracts/produto.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -55,5 +60,15 @@ export class ProdutoHttpService {
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/${id}`).pipe(take(1));
+  }
+
+  addPreco(id: number, body: IProdutoLoja): Observable<IProduto> {
+    return this.http.patch<IProduto>(`${this.url}/${id}/add-preco`, body);
+  }
+
+  removePreco(id: number, idLoja: number): Observable<IProduto> {
+    return this.http.patch<IProduto>(`${this.url}/${id}/remove-preco`, {
+      idLoja,
+    });
   }
 }
