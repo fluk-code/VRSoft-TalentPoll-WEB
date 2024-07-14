@@ -5,8 +5,16 @@ form {
   gap: 0.5rem;
 
   .input--container {
-    &.descricao {
-      flex-grow: 1;
+    &.codigo {
+      width: 10rem;
+    }
+
+    &.custo {
+      width: 10rem;
+    }
+
+    &.preco-venda {
+      width: 10rem;
     }
   }
 }
@@ -18,10 +26,6 @@ form {
     th {
       &.codigo {
         width: 10rem;
-      }
-
-      &.custo {
-        width: 5rem;
       }
 
       &.acoes {

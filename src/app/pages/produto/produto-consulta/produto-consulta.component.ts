@@ -1,4 +1,4 @@
-import { Observable, Subscription, debounceTime, filter, startWith, switchMap, tap } from 'rxjs';
+import { Subscription, debounceTime, filter, switchMap, tap, startWith, Observable } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -18,11 +18,11 @@ import {
   SearchRequest,
   SearchResponse,
 } from '../../../@shared/services/http/contracts/search.interface';
-import { ILoja, ILojaFilter, ILojaSort } from '../contracts/loja.interface';
-import { LojaHttpService } from '../services/loja-http.service';
+import { IProdutoSort, IProduto, IProdutoFilter } from '../contracts/produto.interface';
+import { ProdutoHttpService } from '../services/produto-http.service';
 
 @Component({
-  selector: 'fk-loja-consulta',
+  selector: 'fk-produto-consulta',
   standalone: true,
   imports: [
     CommonModule,
@@ -33,16 +33,16 @@ import { LojaHttpService } from '../services/loja-http.service';
     BtnSmallEditComponent,
     BtnSmallRemoveComponent,
   ],
-  templateUrl: './loja-consulta.component.html',
-  styleUrl: './loja-consulta.component.scss',
+  templateUrl: './produto-consulta.component.html',
+  styleUrl: './produto-consulta.component.scss',
 })
-export class LojaConsultaComponent implements OnInit, OnDestroy {
-  lojaList: ILoja[] = [];
+export class ProdutoConsultaComponent implements OnInit, OnDestroy {
+  produtoList: IProduto[] = [];
 
   filterForm!: FormGroup;
   perPageForm!: FormGroup;
 
-  paginate: IPaginate<ILojaSort> = {
+  paginate: IPaginate<IProdutoSort> = {
     page: 2,
     perPage: 1,
     lastPage: 0,
@@ -55,7 +55,7 @@ export class LojaConsultaComponent implements OnInit, OnDestroy {
   private subs = new Subscription();
 
   constructor(
-    private readonly httpService: LojaHttpService,
+    private readonly httpService: ProdutoHttpService,
     private readonly formBuilder: FormBuilder,
     private readonly dataTableService: DataTableService
   ) {}
@@ -64,11 +64,13 @@ export class LojaConsultaComponent implements OnInit, OnDestroy {
     this.formBuild();
     this.idChanges();
     this.descricaoChanges();
+    this.custoChanges();
+    this.precoVendaChanges();
     this.perPageChanges();
-    this.searchLoja(this.paginate);
+    this.searchProduto(this.paginate);
   }
 
-  ordenar(field: keyof IPaginate<ILojaSort>['sort']) {
+  ordenar(field: keyof IPaginate<IProdutoSort>['sort']) {
     let direction = 'ASC';
 
     if (this.paginate.sort[field] === 'ASC') {
@@ -83,7 +85,7 @@ export class LojaConsultaComponent implements OnInit, OnDestroy {
       },
     };
 
-    this.subs.add(this.searchLoja$(this.paginate).subscribe());
+    this.subs.add(this.search$(this.paginate).subscribe());
   }
 
   navigatePage(page: number | string) {
@@ -95,19 +97,19 @@ export class LojaConsultaComponent implements OnInit, OnDestroy {
       ...this.paginate,
       page,
     };
-    this.searchLoja(this.paginate);
+    this.searchProduto(this.paginate);
   }
 
-  excluirLoja(id: number) {
+  excluirProduto(id: number) {
     this.subs.add(
       this.httpService
         .delete(id)
         .pipe(
           switchMap(() =>
-            this.searchLoja$({
+            this.search$({
               ...this.paginate,
               page:
-                this.lojaList.length <= 1 && this.paginate.page === this.paginate.lastPage
+                this.produtoList.length <= 1 && this.paginate.page === this.paginate.lastPage
                   ? this.paginate.lastPage - 1
                   : this.paginate.page,
             })
@@ -125,6 +127,8 @@ export class LojaConsultaComponent implements OnInit, OnDestroy {
     this.filterForm = this.formBuilder.group({
       id: [null],
       descricao: [null],
+      custo: [null],
+      precoVenda: [null],
     });
 
     this.perPageForm = this.formBuilder.group({
@@ -140,12 +144,18 @@ export class LojaConsultaComponent implements OnInit, OnDestroy {
           filter((value) => value === 'VALID'),
           debounceTime(400),
           tap(() => {
-            const filter = this.filterForm.getRawValue() as ILoja;
-            this.searchLoja({
+            const { precoVenda, ...filter } = this.filterForm.getRawValue();
+
+            this.searchProduto({
               page: 1,
               perPage: this.paginate.perPage,
               sort: this.paginate.sort,
-              filter,
+              filter: {
+                ...filter,
+                precos: {
+                  precoVenda,
+                },
+              },
             });
           })
         )
@@ -161,15 +171,71 @@ export class LojaConsultaComponent implements OnInit, OnDestroy {
           filter((value) => value === 'VALID'),
           debounceTime(400),
           tap(() => {
-            const { id, descricao } = this.filterForm.getRawValue();
+            const { precoVenda, ...filter } = this.filterForm.getRawValue();
 
-            this.searchLoja({
+            this.searchProduto({
               page: 1,
               perPage: this.paginate.perPage,
               sort: this.paginate.sort,
               filter: {
-                id,
-                descricao,
+                ...filter,
+                precos: {
+                  precoVenda,
+                },
+              },
+            });
+          })
+        )
+        .subscribe()
+    );
+  }
+
+  private custoChanges(): void {
+    this.subs.add(
+      this.filterForm
+        .get('custo')
+        ?.statusChanges.pipe(
+          filter((value) => value === 'VALID'),
+          debounceTime(400),
+          tap(() => {
+            const { precoVenda, ...filter } = this.filterForm.getRawValue();
+
+            this.searchProduto({
+              page: 1,
+              perPage: this.paginate.perPage,
+              sort: this.paginate.sort,
+              filter: {
+                ...filter,
+                precos: {
+                  precoVenda,
+                },
+              },
+            });
+          })
+        )
+        .subscribe()
+    );
+  }
+
+  private precoVendaChanges(): void {
+    this.subs.add(
+      this.filterForm
+        .get('precoVenda')
+        ?.statusChanges.pipe(
+          filter((value) => value === 'VALID'),
+          debounceTime(400),
+          tap(() => {
+            const { precoVenda, ...filter } = this.filterForm.getRawValue();
+
+            this.searchProduto({
+              page: 1,
+              perPage: this.paginate.perPage,
+              sort: this.paginate.sort,
+              filter: {
+                ...filter,
+                precos: {
+                  precoVenda,
+                },
               },
             });
           })
@@ -191,23 +257,23 @@ export class LojaConsultaComponent implements OnInit, OnDestroy {
               perPage: value,
             };
 
-            this.searchLoja(this.paginate);
+            this.searchProduto(this.paginate);
           })
         )
         .subscribe()
     );
   }
 
-  private searchLoja(options?: SearchRequest<ILojaFilter, ILojaSort>): void {
-    this.subs.add(this.searchLoja$(options).subscribe());
+  private searchProduto(options?: SearchRequest<IProdutoFilter, IProdutoSort>): void {
+    this.subs.add(this.search$(options).subscribe());
   }
 
-  private searchLoja$(
-    options?: SearchRequest<ILojaFilter, ILojaSort>
-  ): Observable<SearchResponse<ILoja[]>> {
+  private search$(
+    options?: SearchRequest<IProdutoFilter, IProdutoSort>
+  ): Observable<SearchResponse<IProduto[]>> {
     return this.httpService.search(options).pipe(
       tap((response) => {
-        this.lojaList = response.data;
+        this.produtoList = response.data;
         this.paginate = {
           ...this.paginate,
           page: response.page,

@@ -28,6 +28,18 @@ export const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'produtos',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./produto/produto-consulta/produto-consulta.component').then(
+                (c) => c.ProdutoConsultaComponent
+              ),
+          },
+        ],
+      },
       { path: '', redirectTo: 'lojas', pathMatch: 'full' },
     ],
   },
