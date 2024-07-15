@@ -28,7 +28,10 @@
         <table>
           <thead>
             <th class="add">
-              <fk-btn-small-add (click)="showModalAddPreco()"></fk-btn-small-add>
+              <fk-btn-small-add
+                (click)="showModalAddPreco()"
+                [disabled]="!formProduto.get('id')?.value"
+              ></fk-btn-small-add>
             </th>
             <th class="loja">Loja</th>
             <th class="preco-venda">Preço de venda</th>
@@ -59,7 +62,23 @@
         </table>
       </div>
     </div>
-    <div class="form__img"></div>
+    <div class="form__img">
+      <a class="form__img__link" (click)="openInputFile()">
+        <img
+          class="form__img__link__img"
+          [src]="formProduto.get('imagem')?.value ?? '../../../../assets/img/image.jpg'"
+          alt="Imagem do produto"
+        />
+        <span class="form__img__link__label">Altera Image</span>
+      </a>
+      <input
+        class="form__img__input"
+        #inputFile
+        type="file"
+        accept=".jpg,.jpeg,.png"
+        (change)="onFileSelected($event)"
+      />
+    </div>
   </form>
 </div>
 

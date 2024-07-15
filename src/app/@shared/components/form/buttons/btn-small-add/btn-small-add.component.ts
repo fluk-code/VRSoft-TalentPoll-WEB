@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, booleanAttribute } from '@angular/core';
 
 @Component({
   selector: 'fk-btn-small-add',
@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './btn-small-add.component.html',
   styleUrl: './btn-small-add.component.scss',
 })
-export class BtnSmallAddComponent {}
+export class BtnSmallAddComponent {
+  @Input({ transform: booleanAttribute, required: true }) disabled!: boolean;
+}

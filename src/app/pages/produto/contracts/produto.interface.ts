@@ -4,6 +4,7 @@ export interface IProduto {
   id: number;
   descricao: string;
   custo: string;
+  imagem: string;
   precos: IProdutoLoja[];
 }
 

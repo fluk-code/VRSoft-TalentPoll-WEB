@@ -13,4 +13,15 @@ button {
     font-size: 1.25rem;
     color: var(--color-complement);
   }
+
+  &:disabled {
+    cursor: no-drop;
+    i {
+      color: var(--color-gray-1);
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

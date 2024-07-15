@@ -1,8 +1,9 @@
 import { Observable, Subscription, filter, finalize, map, switchMap, tap } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 import { BtnAddComponent } from '../../../@shared/components/form/buttons/btn-add/btn-add.component';
@@ -50,13 +51,16 @@ export class ProdutoEditarComponent {
   @ViewChild('modal') public modalTemplateRef!: TemplateRef<HTMLFormElement>;
   public modalRef!: ModalRef;
 
+  @ViewChild('inputFile') inputFileElement!: ElementRef<HTMLInputElement>;
+
   constructor(
     private readonly router: Router,
     private readonly activateRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
     private readonly produtoHttpService: ProdutoHttpService,
     private readonly lojaHttpService: LojaHttpService,
-    private readonly modalService: ModalService
+    private readonly modalService: ModalService,
+    private readonly domSanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -116,6 +120,24 @@ export class ProdutoEditarComponent {
       );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onFileSelected(event: any): void {
+    const reader = new FileReader();
+    if (!!event.target.files && event.target.files.length > 0) {
+      const [file] = event.target.files;
+
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const base64img = reader.result as string;
+        this.formProduto.get('imagem')?.setValue(base64img);
+      };
+    }
+  }
+
+  openInputFile() {
+    this.inputFileElement.nativeElement.click();
+  }
+
   private formBuild() {
     this.formProduto = this.formBuilder.group({
       id: [
@@ -127,6 +149,7 @@ export class ProdutoEditarComponent {
       ],
       descricao: [null, [Validators.required, Validators.max(60)]],
       custo: [null, [Validators.required, Validators.min(0)]],
+      imagem: [null],
     });
 
     this.formAddPrecos = this.formBuilder.group({
@@ -163,6 +186,7 @@ export class ProdutoEditarComponent {
           id: response.id,
           descricao: response.descricao,
           custo: response.custo,
+          imagem: this.domSanitizer.sanitize(4, response.imagem) ?? '',
         });
         this.precoList = response.precos;
       }),
