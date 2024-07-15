@@ -24,8 +24,6 @@ export class ModalService {
   }
 
   public open<T>(config: ModalConfig<T>): ModalRef {
-    console.log('open called');
-
     const componentRef = this.createComponentRef();
     componentRef.instance.config = config;
 
