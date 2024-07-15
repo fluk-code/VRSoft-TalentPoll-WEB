@@ -127,11 +127,11 @@ input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
   border: 0.063rem solid var(--color-gray-2);
-  -webkit-text-fill-color: var(--color-gray-0);
+  -webkit-text-fill-color: var(--color-gray-9);
   transition: background-color 5000s ease-in-out 0s;
 
   &:focus {
-    border: 0.063rem solid var(--color-contrast);
+    border: 0.063rem solid var(--color-primary);
     outline: 0;
   }
 }
