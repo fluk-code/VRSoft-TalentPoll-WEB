@@ -1,5 +1,5 @@
 {
-  "name": "NOME_DO_PROJETO_GUI",
+  "name": "VRSoft-TalentPool-WEB",
   "version": "0.0.0",
   "description": "### ⚠️ Check List",
   "main": "index.js",
@@ -17,8 +17,7 @@
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "npm run lint --fix",
     "formatter:check": "prettier --check 'src/**/*.ts'",
-    "formatter:fix": "prettier --write 'src/**/*.ts'",
-    "serve:ssr:NOME_DO_PROJETO_GUI": "node dist/nome-do-projeto-gui/server/server.mjs"
+    "formatter:fix": "prettier --write 'src/**/*.ts'"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +32,7 @@
     "@angular/router": "^17.0.0",
     "@angular/ssr": "^17.0.6",
     "express": "^4.18.2",
+    "font-awesome": "^4.7.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

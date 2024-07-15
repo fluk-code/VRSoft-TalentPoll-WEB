@@ -1,12 +1,18 @@
 version: '3'
 
 services:
-  gui:
+  vrsoft-talentpool-web:
     build: .
-    container_name: NOME_DO_PROJETO_GUI
+    container_name: VRSoft-TalentPool-WEB
     entrypoint: ./.docker/entrypoint.sh
     volumes:
       - .:/home/node/app
     ports:
       - '9876:9876'
       - '${PORT}:${PORT}'
+    networks:
+      - vrsoft-talentpool-net
+
+networks:
+  vrsoft-talentpool-net:
+    driver: bridge

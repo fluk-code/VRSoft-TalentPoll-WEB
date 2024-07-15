@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PagesComponent } from './pages.component';
-import { PagesModule } from './pages.module';
+import { BtnSmallCloseComponent } from './btn-small-close.component';
 
-describe('PagesComponent', () => {
-  let component: PagesComponent;
-  let fixture: ComponentFixture<PagesComponent>;
+describe('BtnSmallCloseComponent', () => {
+  let component: BtnSmallCloseComponent;
+  let fixture: ComponentFixture<BtnSmallCloseComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PagesModule],
+      imports: [BtnSmallCloseComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PagesComponent);
+    fixture = TestBed.createComponent(BtnSmallCloseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

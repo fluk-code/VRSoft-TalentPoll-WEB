@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  gui:
+  vrsoft-talentpool-web:
     privileged: true
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}

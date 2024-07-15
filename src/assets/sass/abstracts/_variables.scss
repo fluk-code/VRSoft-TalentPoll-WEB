@@ -1,0 +1,16 @@
+// Font Family
+$font-family-roboto: 'Roboto-normal-700', sans-serif;
+$font-base: $font-family-roboto;
+
+// default
+$line-height: 1.5rem !default;
+$global-radius: 0.5rem !default;
+
+$font-size: 1rem !default;
+
+$border-color: var(--color-gray-6) !default;
+$font-color: var(--color-gray-9) !default;
+
+$background-color: var(--color-gray-0) !default;
+
+$-border-radios: 4px !default;

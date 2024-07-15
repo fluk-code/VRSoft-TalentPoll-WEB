@@ -1,0 +1,28 @@
+form {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  .input--container {
+    &.descricao {
+      flex-grow: 1;
+    }
+  }
+}
+
+.table--container {
+  padding: 1rem;
+
+  thead {
+    th {
+      &.codigo {
+        width: 10rem;
+      }
+
+      &.acoes {
+        width: 5rem;
+      }
+    }
+  }
+}

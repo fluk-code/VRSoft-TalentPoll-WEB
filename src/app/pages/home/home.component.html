@@ -1,10 +1,35 @@
 <div class="card--container">
-  <h2 class="card__header">Home</h2>
-  <div class="div__separator"></div>
+  <form>
+    <div class="input--container">
+      <label for="codigo">Código</label>
+      <input id="codigo" type="text" />
+    </div>
 
-  <p class="card__body--container">
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis, veritatis doloribus
-    distinctio repudiandae necessitatibus, perferendis facere iusto facilis perspiciatis natus
-    debitis quasi asperiores iure optio deleniti, dolorem doloremque quae fuga.
-  </p>
+    <div class="input--container descricao">
+      <label for="descricao">Descrição</label>
+      <input id="descricao" type="text" />
+    </div>
+  </form>
+
+  <div class="table--container">
+    <table>
+      <thead>
+        <th class="codigo">Código</th>
+        <th class="descricao">Descricao</th>
+        <th class="acoes"></th>
+      </thead>
+      <tbody>
+        @for (loja of lojaList; track loja.id) {
+          <tr>
+            <td>{{ loja.id }}</td>
+            <td>{{ loja.descricao }}</td>
+            <td>
+              <fk-btn-small-edit></fk-btn-small-edit>
+              <fk-btn-small-remove></fk-btn-small-remove>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,0 +1,96 @@
+<fk-sidebar>
+  <fk-btn-add routerLink="cadastrar"></fk-btn-add>
+</fk-sidebar>
+
+<div class="page">
+  <div class="card--container">
+    <form [formGroup]="filterForm">
+      <div class="form__row">
+        <div class="input--container codigo">
+          <label for="codigo">Código</label>
+          <input id="codigo" type="text" formControlName="id" />
+        </div>
+
+        <div class="input--container form__row--flex-grow">
+          <label for="descricao">Descrição</label>
+          <input id="descricao" type="text" formControlName="descricao" />
+        </div>
+
+        <div class="input--container custo">
+          <label for="custo">Custo</label>
+          <input id="custo" type="text" formControlName="custo" />
+        </div>
+
+        <div class="input--container preco-venda">
+          <label for="preco-venda">Preço de venda</label>
+          <input id="preco-venda" type="text" formControlName="precoVenda" />
+        </div>
+      </div>
+    </form>
+
+    <div class="table--container">
+      <table>
+        <thead>
+          <th class="codigo" (click)="ordenar('id')">Código</th>
+          <th class="descricao" (click)="ordenar('descricao')">Descricao</th>
+          <th class="custo" (click)="ordenar('custo')">Custo</th>
+          <th class="acoes"></th>
+        </thead>
+        <tbody>
+          @if (produtoList.length) {
+            @for (produto of produtoList; track produto.id) {
+              <tr>
+                <td>{{ produto.id }}</td>
+                <td>{{ produto.descricao }}</td>
+                <td class="custo">{{ produto.custo }}</td>
+                <td>
+                  <fk-btn-small-edit [routerLink]="[produto.id]"></fk-btn-small-edit>
+                  <fk-btn-small-remove (click)="excluirProduto(produto.id)"></fk-btn-small-remove>
+                </td>
+              </tr>
+            }
+          } @else {
+            <tr>
+              <td colspan="4" class="table__not-found">Nenhum registro encontrado</td>
+            </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <div class="table__footer">
+                <form class="form--clean" [formGroup]="perPageForm">
+                  <div class="table__footer__total">
+                    Exibindo:
+                    <span>
+                      <select id="perPage" class="select--clean" formControlName="perPage">
+                        @for (perPage of perPageOptions; track $index) {
+                          <option [value]="perPage">{{ perPage }}</option>
+                        }
+                      </select>
+                    </span>
+                  </div>
+                </form>
+                <span class="table__footer__pages">
+                  @for (pageNumber of pageOptions(); track $index) {
+                    @if (pageNumber !== '...') {
+                      <a
+                        [ngClass]="{ 'table__footer__pages--active': pageNumber === paginate.page }"
+                        (click)="navigatePage(pageNumber)"
+                        >{{ pageNumber }}</a
+                      >
+                    } @else {
+                      <span>{{ pageNumber }}</span>
+                    }
+                  }
+                </span>
+
+                <span>{{ paginate.total }} Itens</span>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

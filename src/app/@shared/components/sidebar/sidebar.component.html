@@ -1,10 +1,13 @@
-<aside class="main-sidebar">
-  <div class="main-sidebar__toggle--container">
-    <button type="button" class="btn--reset main-sidebar__toggle-arrow">
-      <i class="fk-seta_direcional_direita"></i>
-    </button>
-    <button type="button" class="btn--reset main-sidebar__toggle-arrow">
-      <i class="fk-seta_direcional_esquerda"></i>
-    </button>
+<aside class="sidebar--container">
+  <div class="sidebar">
+    <div class="sidebar__actions">
+      <ng-content></ng-content>
+    </div>
+
+    <div class="sidebar__pages">
+      <a [routerLink]="['/', 'lojas']">Loja</a>
+      &bullet;
+      <a [routerLink]="['/', 'produtos']">Produto</a>
+    </div>
   </div>
 </aside>

@@ -1,37 +1,55 @@
-# NOME_DO_PROJETO_GUI
+# VRSoft-TalentPool-WEB
 
-### ⚠️ Check List
+## Start
 
-> Ao iniciar um novo repositorio com o template é necessário realizar os passos abaixo para configurar o projeto.
+Estre projet utiliza **Dev Container**, para iniciar o ambiente de desenvolvimento será necessário a extensão `ms-vscode-remote.remote-containers`.
 
-1.  Alterar o nome do projeto nos arquivos:
+    1. Abra o VsCode.
+    2. Indo em `File (Arquivo)` > `Open Folder (Abrir Pasta)`.
+    3. Clique no botão `Reopen in Container` que aparecerá no canto inferior direito do VS Code.
 
-    - [README.md](README.md#L1-L3). _Linha 1, Coluna 3_
-    - [README.md](README.md#L23-L83). _Linha 23, Coluna 83_
+    Ou
 
-    - [package.json](package.json#L2-L12). _Linha 2, Coluna 12_
-    - [package.json](package.json#L21-L16). _Linha 21, Coluna 16_
+    1. Abra o projeto no VsCode.
+    2. Tecle `CTRL` + `SHIFT` + `P`.
+    3. Procure e escolha a opção `Dev Containers: Open Folder in Container`.
 
-    - [package-lock.json](package-lock.json#L2-L12). _Linha 2, Coluna 12_
-    - [package-lock.json](package-lock.json#L8-L16). _Linha 8, Coluna 16_
+Isso iniciará o Dev Container e configurará o ambiente de desenvolvimento.
 
-    - [angular.json](angular.json#L6-L6). _Linha 6, Coluna 6_
-    - [angular.json](angular.json#L63-L31). _Linha 63, Coluna 31_
-    - [angular.json](angular.json#L66-L31). _Linha 66, Coluna 31_
-    - [angular.json](angular.json#L63-L31). _Linha 74, Coluna 29_
+Com o `Dev Container` iniciado basta executar o ambiente que preferir
 
-    - [docker-compose.yml](docker-compose.yml#L6-L21). _Linha 6, Coluna 21_
+```
+  npm start
+```
 
-    - [sonar-project.properties](sonar-project.properties#L1-L18). _Linha 1, Coluna 18_
-    - [sonar-project.properties](sonar-project.properties#L2-L19). _Linha 2, Coluna 19_
+```
+  npm run start:debug
+```
 
-    - [app.component.ts](app.component.spec.ts#L13-L12). _Linha 13, Coluna 12_
+```
+  npm run start:dev
+```
 
-    - [app.component.spec.ts](app.component.spec.ts#L18-L24). _Linha 18, Coluna 24_
-    - [app.component.spec.ts](app.component.spec.ts#L21-L32). _Linha 21, Coluna 32_
-    - [app.component.spec.ts](app.component.spec.ts#L28-L73). _Linha 28, Coluna 73_
+## Voltar ao ambiente local
 
-2.  Iniciar a Home Page na WIKI do repositório.
-3.  Renomear a pasta [.github/workflows_init](.github/workflows_init/CHECK_PULL_REQUEST.yml) para `workflows`.
-4.  Excluir essas mensagens de `⚠️ CHECK LIST` do README.md e alterar o título.
+    1. Tecle `CTRL` + `SHIFT` + `P`.
+    2. Procure e escolha a opção `Dev Containers: Reopen Folder Locally`.
 
+### Check List
+
+- ✅ Consulta de Produto
+
+  - Filtro por código
+  - Filtro por descrição
+  - Filtro por custo
+  - FIltro por preço de venda
+  - Permitir Editar Produto
+  - Permitir Cadastrar Novo Produto
+  - Permitir Excluir Produto
+
+- ✅ Edição/Cadastrar Produto
+  - Adicionar image
+  - Bloquear Id
+  - Permitir Excluir Produto
+  - Modal de Editar/Adicionar Preço venda
+  - Listar os preços por loja
